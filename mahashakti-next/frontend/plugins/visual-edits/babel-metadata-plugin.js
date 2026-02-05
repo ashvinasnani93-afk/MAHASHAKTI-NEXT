@@ -914,7 +914,12 @@ const babelMetadataPlugin = ({ types: t }) => {
   /**
    * Detects if we're inside an array iteration (.map(), etc.) and extracts context
    */
-  function getArrayIterationContext(exprPath, state) {
+ function getArrayIterationContext(exprPath, state, depth = 0) {
+
+   if (depth > 10) {
+    return null;
+  }
+   
     // Find the parent .map() or similar call
     const callExprParent = exprPath.findParent((p) => {
       if (!p.isCallExpression()) return false;
@@ -976,9 +981,10 @@ const babelMetadataPlugin = ({ types: t }) => {
     } else if (t.isMemberExpression(arrayNode)) {
       // Handle cases like data.items.map(...)
       const memberInfo = analyzeMemberExpression(
-        callExprParent.get("callee.object"),
-        state
-      );
+  callExprParent.get("callee.object"),
+  state,
+  depth + 1
+);
       if (memberInfo) {
         arrayVar = memberInfo.varName;
         arrayFile = memberInfo.file || null;
