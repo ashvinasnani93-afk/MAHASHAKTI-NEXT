@@ -1,6 +1,6 @@
 import requests
 import logging
-from typing import List, Dict
+from typing import List, Dict, Optional
 import pandas as pd
 from datetime import datetime, timedelta
 
