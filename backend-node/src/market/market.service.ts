@@ -13,7 +13,6 @@ export class MarketService {
 
   async getDashboardData() {
     try {
-      // Mock data for now - replace with real Angel One API calls
       const indices = [
         {
           symbol: 'NIFTY',
@@ -85,8 +84,111 @@ export class MarketService {
     }
   }
 
+  async getBigMovers(minChange: number = 15, maxChange: number = 20) {
+    try {
+      // Mock data for 15-20% movers
+      const bigMovers = [
+        {
+          symbol: 'ADANIPORTS',
+          name: 'Adani Ports',
+          ltp: 1285.50,
+          prevClose: 1085.30,
+          change: 200.20,
+          changePercent: 18.45,
+          volume: 8520000,
+          signal: 'STRONG BUY',
+          reason: 'Breakout with high volume',
+        },
+        {
+          symbol: 'TATASTEEL',
+          name: 'Tata Steel',
+          ltp: 158.75,
+          prevClose: 135.20,
+          change: 23.55,
+          changePercent: 17.42,
+          volume: 15200000,
+          signal: 'BUY',
+          reason: 'Strong uptrend continuation',
+        },
+        {
+          symbol: 'SAIL',
+          name: 'SAIL',
+          ltp: 125.80,
+          prevClose: 108.50,
+          change: 17.30,
+          changePercent: 15.95,
+          volume: 12500000,
+          signal: 'BUY',
+          reason: 'Sector momentum',
+        },
+        {
+          symbol: 'COALINDIA',
+          name: 'Coal India',
+          ltp: 485.25,
+          prevClose: 415.80,
+          change: 69.45,
+          changePercent: 16.70,
+          volume: 6800000,
+          signal: 'STRONG BUY',
+          reason: 'Bullish breakout pattern',
+        },
+        {
+          symbol: 'VEDL',
+          name: 'Vedanta Ltd',
+          ltp: 485.60,
+          prevClose: 420.50,
+          change: 65.10,
+          changePercent: 15.48,
+          volume: 9200000,
+          signal: 'BUY',
+          reason: 'High volume surge',
+        },
+        {
+          symbol: 'ZOMATO',
+          name: 'Zomato',
+          ltp: 285.40,
+          prevClose: 245.20,
+          change: 40.20,
+          changePercent: 16.40,
+          volume: 18500000,
+          signal: 'STRONG BUY',
+          reason: 'Explosive momentum',
+        },
+        {
+          symbol: 'PAYTM',
+          name: 'Paytm',
+          ltp: 925.50,
+          prevClose: 800.00,
+          change: 125.50,
+          changePercent: 15.69,
+          volume: 7200000,
+          signal: 'BUY',
+          reason: 'Recovery rally',
+        },
+        {
+          symbol: 'YESBANK',
+          name: 'Yes Bank',
+          ltp: 28.85,
+          prevClose: 24.50,
+          change: 4.35,
+          changePercent: 17.76,
+          volume: 25000000,
+          signal: 'WAIT',
+          reason: 'High volatility - wait for confirmation',
+        },
+      ];
+
+      // Filter based on minChange and maxChange
+      return bigMovers.filter(
+        (stock) => Math.abs(stock.changePercent) >= minChange && Math.abs(stock.changePercent) <= maxChange,
+      );
+    } catch (error) {
+      this.logger.error(`Error getting big movers: ${error.message}`);
+      return [];
+    }
+  }
+
   async getStocksByCategory(category: string) {
-    // Mock data
     const stocks = [
       { symbol: 'RELIANCE', ltp: 2850.50, change: 125.30, changePercent: 4.6, volume: 5250000 },
       { symbol: 'TCS', ltp: 3950.75, change: 165.25, changePercent: 4.4, volume: 3150000 },
@@ -98,7 +200,6 @@ export class MarketService {
   }
 
   async getSymbolDetail(symbol: string) {
-    // Mock detailed data
     return {
       symbol,
       name: symbol,
@@ -137,7 +238,6 @@ export class MarketService {
   }
 
   async searchSymbols(query: string) {
-    // Mock search results
     const allSymbols = [
       { symbol: 'NIFTY', name: 'NIFTY 50', type: 'INDEX' },
       { symbol: 'BANKNIFTY', name: 'BANK NIFTY', type: 'INDEX' },

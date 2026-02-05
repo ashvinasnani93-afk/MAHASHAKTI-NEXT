@@ -1,4 +1,4 @@
-import { Controller, Get, Query, Param } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { MarketService } from './market.service';
 
 @Controller('api/market')
@@ -17,6 +17,17 @@ export class MarketController {
   @Get('/stocks')
   async getStocks(@Query('category') category: string) {
     const data = await this.marketService.getStocksByCategory(category);
+    return {
+      success: true,
+      data,
+    };
+  }
+
+  @Get('/movers')
+  async getMovers(@Query('minChange') minChange: string, @Query('maxChange') maxChange: string) {
+    const min = parseFloat(minChange || '15');
+    const max = parseFloat(maxChange || '20');
+    const data = await this.marketService.getBigMovers(min, max);
     return {
       success: true,
       data,
