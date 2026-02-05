@@ -29,3 +29,7 @@ Thumbs.db
 # Temp files
 *.tmp
 .cache/
+-e 
+# Environment files
+*.env
+*.env.*
