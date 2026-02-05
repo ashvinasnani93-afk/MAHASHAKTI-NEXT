@@ -37,7 +37,7 @@
     "ws": "^8.18.0"
   },
   "devDependencies": {
-    "@nestjs/cli": "^10.4.15",
+    "@nestjs/cli": "^10.0.0",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/ws": "^8.5.13"
