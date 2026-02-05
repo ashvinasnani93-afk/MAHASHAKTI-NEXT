@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, TrendingUp, TrendingDown } from 'lucide-react';
 import { marketAPI } from '../services/api';
@@ -11,24 +11,27 @@ const Dashboard = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('all');
 
-  useEffect(() => {
-    loadDashboard();
-  }, []);
+ useEffect(() => {
+  loadDashboard();
+}, [loadDashboard]);
+  
+ const loadDashboard = useCallback(async () => {
+  try {
+    const response = await marketAPI.getDashboard();
 
-  const loadDashboard = async () => {
-    try {
-      const response = await marketAPI.getDashboard();
-      if (response.data.success) {
-        setDashboardData(response.data.data);
-      }
-    } catch (error) {
-      toast.error('Failed to load dashboard data');
-      console.error('Dashboard error:', error);
-    } finally {
-      setLoading(false);
+    if (response?.data?.success) {
+      setDashboardData(response.data.data);
     }
-  };
 
+  } catch (error) {
+    toast.error('Failed to load dashboard data');
+    console.error('Dashboard error:', error);
+
+  } finally {
+    setLoading(false);
+  }
+}, []);
+  
   if (loading) {
     return (
       <div style={{ padding: '40px', textAlign: 'center' }}>
