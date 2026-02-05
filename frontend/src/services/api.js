@@ -13,6 +13,7 @@ const api = axios.create({
 export const marketAPI = {
   getDashboard: () => api.get('/api/market/dashboard'),
   getStocks: (category) => api.get(`/api/market/stocks?category=${category}`),
+  getMovers: (minChange, maxChange) => api.get(`/api/market/movers?minChange=${minChange}&maxChange=${maxChange}`),
   getSymbolDetail: (symbol) => api.get(`/api/market/symbol/${symbol}`),
   getCommodities: () => api.get('/api/market/commodities'),
   search: (query) => api.get(`/api/market/search?q=${query}`),
