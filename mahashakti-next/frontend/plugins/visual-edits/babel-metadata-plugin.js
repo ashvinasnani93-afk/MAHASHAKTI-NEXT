@@ -919,6 +919,18 @@ const babelMetadataPlugin = ({ types: t }) => {
    if (depth > 10) {
     return null;
   }
+
+
+   const ARRAY_METHODS = new Set([
+  "map",
+  "filter",
+  "forEach",
+  "reduce",
+  "find",
+  "some",
+  "every",
+  "flatMap"
+]);
    
     // Find the parent .map() or similar call
     const callExprParent = exprPath.findParent((p) => {
