@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, TrendingUp, Activity, Search, Settings, BarChart3 } from 'lucide-react';
+import { Home, TrendingUp, Activity, Search, Settings, Zap } from 'lucide-react';
 
 const BottomNav = () => {
   const location = useLocation();
@@ -9,7 +9,7 @@ const BottomNav = () => {
     { path: '/', icon: Home, label: 'Home', testId: 'nav-home' },
     { path: '/signals', icon: TrendingUp, label: 'Signals', testId: 'nav-signals' },
     { path: '/scanner', icon: Activity, label: 'Scanner', testId: 'nav-scanner' },
-    { path: '/options', icon: BarChart3, label: 'Options', testId: 'nav-options' },
+    { path: '/movers', icon: Zap, label: 'Movers', testId: 'nav-movers' },
     { path: '/settings', icon: Settings, label: 'Settings', testId: 'nav-settings' },
   ];
 
