@@ -5,6 +5,7 @@ import Dashboard from './screens/Dashboard';
 import Signals from './screens/Signals';
 import OptionChain from './screens/OptionChain';
 import Scanner from './screens/Scanner';
+import Movers from './screens/Movers';
 import Commodities from './screens/Commodities';
 import MarketHeatmap from './screens/MarketHeatmap';
 import SymbolDetail from './screens/SymbolDetail';
@@ -32,6 +33,7 @@ function App() {
             <Route path="/signals" element={<Signals />} />
             <Route path="/options" element={<OptionChain />} />
             <Route path="/scanner" element={<Scanner />} />
+            <Route path="/movers" element={<Movers />} />
             <Route path="/commodities" element={<Commodities />} />
             <Route path="/heatmap" element={<MarketHeatmap />} />
             <Route path="/symbol/:symbol" element={<SymbolDetail />} />
