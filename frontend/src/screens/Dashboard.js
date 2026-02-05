@@ -11,10 +11,6 @@ const Dashboard = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('all');
 
- useEffect(() => {
-  loadDashboard();
-}, [loadDashboard]);
-  
  const loadDashboard = useCallback(async () => {
   try {
     const response = await marketAPI.getDashboard();
@@ -30,6 +26,10 @@ const Dashboard = () => {
   } finally {
     setLoading(false);
   }
+}, []);
+
+  useEffect(() => {
+  loadDashboard();
 }, []);
   
   if (loading) {
