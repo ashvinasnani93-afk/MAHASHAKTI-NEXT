@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, TrendingUp, TrendingDown } from 'lucide-react';
 import { marketAPI } from '../services/api';
@@ -11,11 +11,8 @@ const Dashboard = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('all');
 
-  useEffect(() => {
-    loadDashboard();
-  }, []);
-
-  const loadDashboard = async () => {
+ 
+  const loadDashboard = useCallback(async () => {
     try {
       const response = await marketAPI.getDashboard();
       if (response.data.success) {
@@ -27,7 +24,12 @@ const Dashboard = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    loadDashboard();
+  }, []);
+  
 
   if (loading) {
     return (
