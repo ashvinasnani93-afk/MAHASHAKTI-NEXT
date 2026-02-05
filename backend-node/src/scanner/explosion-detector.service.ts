@@ -5,7 +5,7 @@ import { OptionCacheService } from './option-cache.service';
 import { ConfigService } from '../config/config.service';
 import { ScannerGateway } from './scanner.gateway';
 
-interface ExplosionAlert {
+export interface ExplosionAlert {
   symbol: string;
   strike: number;
   optionType: string;
